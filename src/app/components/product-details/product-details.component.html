@@ -1,0 +1,74 @@
+<div class="d-flex justify-content-center m-3">
+    <div class="card" style="width: 50rem;">
+        <img class="card-img-top" [src]="product.productImageUrl" [alt]="product.productName">
+        <div class="card-body">
+          <h4 class="card-title">{{product.productName}}</h4>
+          <p class="card-text">{{product.productDescription}}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><strong>Product Id:</strong> {{product.productId}}</li>
+          <li class="list-group-item"><strong>Category Id:</strong> {{product.categoryId}}</li>
+          <li class="list-group-item"><strong>Delivery Time Span:</strong> {{product.deliveryTimeSpan}}</li>
+          <li class="list-group-item"><strong>Price:</strong> {{product.productPrice}}</li>
+          <li class="list-group-item"><strong>Short Name: </strong>{{product.productShortName}}</li>
+          <li class="list-group-item"><strong>Stock Keeping Unit:</strong> {{product.productSku}}</li>
+        </ul>
+        <div class="card-body">
+          <a routerLink="/products" class="card-link">Go Back</a>
+          
+          <!-- Button trigger modal -->
+          <button class="card-link btn btn-primary" (click)="openModal()">Edit</button>
+                              
+          <button class="card-link btn btn-danger" (click)="onDeleteProduct()">Delete</button>
+
+          <!-- Modal -->
+          <div class="modal fade" #productModal id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">{{product.productName}}</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                      <label for="sku" class="mt-1">Product SKU</label>
+                      <input type="text" class="form-control mt-1" name="sku" placeholder="Enter product SKU" [(ngModel)]="product.productSku">
+                    </div>
+                    <div class="form-group">
+                      <label for="name" class="mt-1">Product Name</label>
+                      <input type="text" class="form-control mt-1" name="name" placeholder="Enter product name" [(ngModel)]="product.productName">
+                    </div>
+                    <div class="form-group">
+                      <label for="price" class="mt-1">Product Price</label>
+                      <input type="number" class="form-control mt-1" name="price" placeholder="Enter product price" [(ngModel)]="product.productPrice">
+                    </div>
+                    <div class="form-group">
+                      <label for="short-name" class="mt-1">Product Short Name</label>
+                      <input type="text" class="form-control mt-1" name="short-name" placeholder="Enter product short name" [(ngModel)]="product.productShortName">
+                    </div>
+                    <div class="form-group">
+                      <label for="description" class="mt-1">Product Description</label>
+                      <input type="text" class="form-control mt-1" name="description" placeholder="Enter product price" [(ngModel)]="product.productDescription">
+                    </div>
+                    <div class="form-group">
+                      <label for="date" class="mt-1">Created Date</label>
+                      <input type="date" class="form-control mt-1" name="date" placeholder="Enter created time" [(ngModel)]="product.createdDate">
+                    </div>
+                    <div class="form-group">
+                      <label for="delivery-time-span" class="mt-1">Delivery Time Span</label>
+                      <input type="text" class="form-control mt-1" name="delivery-time-span" placeholder="Enter delivery time span" [(ngModel)]="product.deliveryTimeSpan">
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" (click)="onSaveProduct()">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+</div>

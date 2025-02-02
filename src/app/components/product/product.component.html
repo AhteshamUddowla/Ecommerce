@@ -1,0 +1,80 @@
+<button class="card-link btn btn-primary m-3" (click)="openModal()">Add Product</button>
+
+<table class="table m-3">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Product Id</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">Product Price</th>
+        <th scope="col">Created Date</th>
+        <th scope="col">Delivery Time Span</th>
+        <th scope="col">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+        @for(product of productList; track $index){
+            <tr>
+                <th scope="row">{{$index+1}}</th>
+                <td>{{product.productId}}</td>
+                <td>{{product.productName}}</td>
+                <td>{{product.productPrice}}</td>
+                <td>{{product.createdDate | date: 'dd-MM-yyyy'}}</td>
+                <td>{{product.deliveryTimeSpan}}</td>
+                <td><a class="link-primary" (click)="onDetailsClick(product.productId)"> Details</a></td>
+            </tr>
+        }
+    </tbody>
+  </table>
+
+  <!-- Modal -->
+  <div class="modal fade" #productModal id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Add New Product</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="name">Product Name</label>
+              <input type="text" class="form-control mt-1" name="name" placeholder="Enter product name" [(ngModel)]="product.productName">
+            </div>
+            <div class="form-group">
+              <label for="sku" class="mt-1">Product SKU</label>
+              <input type="text" class="form-control mt-1" name="sku" placeholder="Enter product SKU" [(ngModel)]="product.productSku">
+            </div>
+            <div class="form-group">
+              <label for="price"  class="mt-1">Product Price</label>
+              <input type="number" class="form-control mt-1" name="price" placeholder="Enter product price" [(ngModel)]="product.productPrice">
+            </div>
+            <div class="form-group">
+              <label for="short-name" class="mt-1">Product Short Name</label>
+              <input type="text" class="form-control mt-1" name="short-name" placeholder="Enter product short name" [(ngModel)]="product.productShortName">
+            </div>
+            <div class="form-group">
+              <label for="description" class="mt-1">Product Description</label>
+              <input type="text" class="form-control mt-1" name="description" placeholder="Enter product price" [(ngModel)]="product.productDescription">
+            </div>
+            <div class="form-group">
+              <label for="date" class="mt-1">Created Date</label>
+              <input type="date" class="form-control mt-1" name="date" placeholder="Enter created time" [(ngModel)]="product.createdDate">
+            </div>
+            <div class="form-group">
+              <label for="delivery-time-span" class="mt-1">Delivery Time Span</label>
+              <input type="text" class="form-control mt-1" name="delivery-time-span" placeholder="Enter delivery time span" [(ngModel)]="product.deliveryTimeSpan">
+            </div>
+            <div class="form-group">
+              <label for="category" class="mt-1">Category ID</label>
+              <input type="number" class="form-control mt-1" name="category" placeholder="Enter category ID" [(ngModel)]="product.categoryId">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="onSaveProduct()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
